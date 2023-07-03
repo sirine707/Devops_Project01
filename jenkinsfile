@@ -6,8 +6,8 @@ pipeline{
             steps{
                 script{
                     gitCheckout(
-                    branch: 'main',
-                    url: 'https://github.com/sirine707/javaApplication.git'
+                    branch: "main",
+                    url: "https://github.com/sirine707/javaApplication.git"
                     )
                 }
             }
