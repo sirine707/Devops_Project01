@@ -1,10 +1,14 @@
+@Lib('Jenkins_Shared_Lib') _
 pipeline{
     agent any
     stages{
-        stage("git checkout"){
+        stage("Git Checkout"){
             steps{
                 script{
-                    git branch: 'main', url: 'https://github.com/sirine707/javaApplication.git'
+                    gitCheckout(
+                    branch: 'main',
+                    url: 'https://github.com/sirine707/javaApplication.git'
+                    )
                 }
             }
         }
