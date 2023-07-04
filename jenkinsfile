@@ -6,7 +6,7 @@ pipeline{
     }
     stages{
         stage('Git Checkout'){
-            when{ expression{ param.action== 'create'}}
+            when{ expression{ params.action== 'create'}}
             steps{
                 script{
                     gitCheckout(
@@ -18,7 +18,7 @@ pipeline{
         }
 
         stage('Unit Test for maven'){
-            when{ expression{ param.action== 'create'}}
+            when{ expression{ params.action== 'create'}}
             steps{
                 script{
                     mvnTest()
@@ -26,7 +26,7 @@ pipeline{
             }
         }
         stage('integration Test for maven'){
-            when{ expression{ param.action== 'create'}}
+            when{ expression{ params.action== 'create'}}
             steps{
                 script{
                     mvnIntegrationTest()
@@ -37,7 +37,7 @@ pipeline{
 
 
         stage('static code analysis : sonarqube'){
-            when{ expression{ param.action== 'create'}}
+            when{ expression{ params.action== 'create'}}
             steps{
                 script{
                     def sonarcredentialsId = 'sonar_api'
