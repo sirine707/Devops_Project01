@@ -1,8 +1,12 @@
 @Library('Jenkins_Shared_Lib') _
 pipeline{
     agent any
+    parameters{
+        choice(name:'action', choices:'create\ndelete',description:'choose create / destroy')
+    }
     stages{
         stage('Git Checkout'){
+            when{ expression{ param.action== 'create'}}
             steps{
                 script{
                     gitCheckout(
@@ -14,6 +18,7 @@ pipeline{
         }
 
         stage('Unit Test for maven'){
+            when{ expression{ param.action== 'create'}}
             steps{
                 script{
                     mvnTest()
@@ -21,9 +26,22 @@ pipeline{
             }
         }
         stage('integration Test for maven'){
+            when{ expression{ param.action== 'create'}}
             steps{
                 script{
                     mvnIntegrationTest()
+                    
+                }
+            }
+        }
+
+
+        stage('static code analysis : sonarqube'){
+            when{ expression{ param.action== 'create'}}
+            steps{
+                script{
+                    def sonarcredentialsId = 'sonar_api'
+                    staticCodeAnalysis(sonarcredentialsId)
                 }
             }
         }
