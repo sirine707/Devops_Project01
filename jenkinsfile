@@ -3,9 +3,9 @@ pipeline{
     agent any
     parameters{
         choice(name:'action', choices:'create\ndelete',description:'choose create / destroy')
-        String(name:'ImageName',description:"name of the image", defaultValue:'javaapp')
-        String(name:'ImageTag',description:"tag of docker build", defaultValue:'v1')
-        String(name:'AppName',description:"name of app", defaultValue:'springboot')
+        string(name:'ImageName',description:"name of the image", defaultValue:'javaapp')
+        string(name:'ImageTag',description:"tag of docker build", defaultValue:'v1')
+        string(name:'AppName',description:"name of app", defaultValue:'springboot')
     }   
     stages{
         stage('Git Checkout'){
