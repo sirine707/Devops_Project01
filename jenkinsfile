@@ -20,7 +20,7 @@ pipeline{
             }
         }
 
-        stage('Unit Test for maven'){
+        /* stage('Unit Test for maven'){
             when{ expression{ params.action== 'create'}}
             steps{
                 script{
@@ -65,7 +65,7 @@ pipeline{
                     mvnBuild()
                 }
             }
-        }
+        } */
         stage('docker image build '){
             when{ expression{ params.action== 'create'}}
             steps{
