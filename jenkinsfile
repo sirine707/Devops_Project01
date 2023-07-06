@@ -57,7 +57,7 @@ pipeline{
                     QualityGateCheck(sonarcredentialsId)
                 }
             }
-        }
+        }*/
         stage('maven build : maven'){
             when{ expression{ params.action== 'create'}}
             steps{
@@ -65,7 +65,7 @@ pipeline{
                     mvnBuild()
                 }
             }
-        } */
+        } 
         stage('docker image build '){
             when{ expression{ params.action== 'create'}}
             steps{
