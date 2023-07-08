@@ -104,21 +104,21 @@ pipeline{
                 }
             }
          }   
-    //     stage('Docker Image Cleanup : ECR '){
-    //      when { expression {  params.action == 'create' } }
-    //         steps{
-    //            script{
+         stage('Docker Image Cleanup : ECR '){
+          when { expression {  params.action == 'create' } }
+             steps{
+               script{
                    
-    //                dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
-    //            }
-    //         }
-    //     }  
+                    dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+                }
+            }
+         }  
 
             stage('Create EKS Cluster : Terraform'){
             when { expression {  params.action == 'create' } }
                 steps{
                     script{
-                        dir('eks_modules') {
+                        dir('eks_module') {
                         sh """
                         terraform init
                         terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file ./config/terraform.tvars
