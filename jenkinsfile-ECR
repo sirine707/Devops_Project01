@@ -119,7 +119,8 @@ pipeline{
              steps{
                script{
                    
-                    dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+                    //dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+                    sh "docker rmi -f ${params.ECR_REPO_NAME}:latest "
                 }
             }
          }  
