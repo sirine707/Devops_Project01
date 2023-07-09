@@ -130,8 +130,8 @@ pipeline{
                         dir('eks_module') {
                         sh """
                         terraform init
-                        terraform plan -var 'access_key=${ACCESS_KEY}' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file ./config/terraform.tvars
-                        terraform apply -var 'access_key=${ACCESS_KEY}' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file ./config/terraform.tvars --auto-approve
+                        terraform plan -var 'access_key=${ACCESS_KEY}' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file ./eks_module/config/terraform.tvars
+                        terraform apply -var 'access_key=${ACCESS_KEY}' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file ./config/eks/module/terraform.tvars --auto-approve
                         """}
                     }
     
