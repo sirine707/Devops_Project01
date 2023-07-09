@@ -18,15 +18,6 @@ pipeline{
     }
 
     stages{
-        stage('Logging into AWS ECR') {
-            steps {
-                script {
-                sh """aws ecr get-login-password --region ${params.Region} | docker login --username AWS --password-stdin ${params.aws_account_id}.dkr.ecr.${params.Region}.amazonaws.com"""
-                }
-                 
-            }
-        }
-         
         stage('Git Checkout'){
                     when { expression {  params.action == 'create' } }
             steps{
@@ -34,6 +25,14 @@ pipeline{
                 branch: "main",
                 url: "https://github.com/vikash-kumar01/mrdevops_java_app.git"
             )
+            }
+        }
+        stage('Logging into AWS ECR') {
+            steps {
+                script {
+                sh """aws ecr get-login-password --region ${params.Region} | docker login --username AWS --password-stdin ${params.aws_account_id}.dkr.ecr.${params.Region}.amazonaws.com"""
+                }
+                 
             }
         }
         stage('Unit Test maven'){
@@ -114,7 +113,7 @@ pipeline{
          }
                 }
             }
-         }   
+            
          stage('Docker Image Cleanup : ECR '){
           when { expression {  params.action == 'create' } }
              steps{
@@ -139,17 +138,19 @@ pipeline{
     
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
     }
+}
 
-    }        
+
+
+
+
+
+
+
+
+
+
+
+
+         
