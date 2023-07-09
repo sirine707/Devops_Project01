@@ -108,7 +108,10 @@ pipeline{
              steps{
                 script{
                    
-                    dockerImagePush("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+                    sh """docker tag ${params.ECR_REPO_NAME}:latest ${params.aws_account_id}.dkr.ecr.${params.Region}.amazonaws.com/${params.ECR_REPO_NAME}:latest
+                    docker push ${params.aws_account_id}.dkr.ecr.${params.Region}.amazonaws.com/${params.ECR_REPO_NAME}:latest
+                    """
+         }
                 }
             }
          }   
