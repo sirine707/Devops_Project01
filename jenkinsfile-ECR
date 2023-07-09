@@ -18,6 +18,14 @@ pipeline{
     }
 
     stages{
+        stage('Logging into AWS ECR') {
+            steps {
+                script {
+                sh """aws ecr get-login-password --region ${params.REGION} | docker login --username AWS --password-stdin ${params.aws_account_id}.dkr.ecr.${params.REGION}.amazonaws.com"""
+                }
+                 
+            }
+        }
          
         stage('Git Checkout'){
                     when { expression {  params.action == 'create' } }
