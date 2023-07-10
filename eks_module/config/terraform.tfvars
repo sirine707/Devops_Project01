@@ -5,7 +5,7 @@ aws_eks_cluster_config = {
         eks_cluster_name         = "demo-cluster1" 
         eks_subnet_ids = ["subnet-0a17e65da380c6f7f","subnet-0cf2e9c47a5962997","subnet-0d39c05459135445b"]
         tags = {
-             "Name" =  "demo-cluster"
+             "Name" =  "demo-cluster\n"
          }  
       }
 }
@@ -19,7 +19,7 @@ eks_node_group_config = {
         nodes_iam_role           = "eks-node-group-general1"
         node_subnet_ids          = ["subnet-0a17e65da380c6f7f","subnet-0cf2e9c47a5962997","subnet-0d39c05459135445b"]
         tags = {
-             "Name" =  "node1"
+             "Name" =  "node1\n"
          } 
   }
 }
