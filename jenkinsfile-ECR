@@ -24,7 +24,7 @@ pipeline{
                     when { expression {  params.action == 'create' } }
             steps{
             gitCheckout(
-                branch: "main",
+                branch: "devops",
                 url: "https://github.com/sirine707/Devops_Project01.git"
             )
             }
