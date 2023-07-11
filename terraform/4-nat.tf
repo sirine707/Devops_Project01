@@ -1,18 +1,3 @@
-resource "aws_eip" "nat" {
-  vpc = true
-
-  tags = {
-    Name = "nat"
-  }
-}
-
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat.id
-  subnet_id     = aws_subnet.public-eu-west-3a.id
-
-  tags = {
-    Name = "nat"
-  }
-
-  depends_on = [aws_internet_gateway.igw]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e9b879c51edfa19f871fcfbf0c6b3205ff9246e37079151d9c95a9aefbeee1a4
+size 288
