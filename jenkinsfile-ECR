@@ -131,9 +131,9 @@ pipeline{
                     script{
                         withEnv(['TF_LOG=DEBUG']) {
                         dir('terraform'){
-                        sh "terraform init -upgrade"
-                        sh "terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' "
-                        sh "terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --auto-approve "
+                        sh "terraform init -input=false"
+                        sh "terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' -out=tfplan -input=false"
+                        sh "terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' -input=false tfplan --auto-approve "
                         }
                     }
                     }
